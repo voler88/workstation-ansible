@@ -59,6 +59,14 @@ All the following theses are personal opinions.
 | term_base16_branch | Git branch name from Base16 Tinted Theming for Foot git repository. | main                                          |
 | term_base16_theme  | Theme name from Base16 Tinted Theming for Foot.                     | zenburn                                       |
 
+#### Backup tools
+
+| Variable                | Description                                                       | Defaults                                            |
+| ----------------------- | ----------------------------------------------------------------- | --------------------------------------------------- |
+| backup_workaround       | Enable SyncThingy background permission workaround.               | true                                                |
+| backup_portal_config    | Path to xdg portal settings for background permission workaround. | `HOME`/.config/xdg-desktop-portal/sway-portals.conf |
+| backup_flatpak_packages | List of required Flatpack packages.                               | com.github.zocker_160.SyncThingy                    |
+
 ### Tags
 
 | Tag                | Description                                                                         |
@@ -70,6 +78,7 @@ All the following theses are personal opinions.
 | wm:gtk             | Deploy only Window manager's GTK+ settings.                                         |
 | term               | Deploy only Terminal emulator.                                                      |
 | term:configs       | Deploy only Terminal emulator's settings files.                                     |
+| backup             | Deploy only Backup tools.                                                           |
 
 ## How to use collection
 

@@ -1,0 +1,54 @@
+---
+# tasks file for backup
+
+- name: Deploy SyncThingy
+  tags:
+    - backup
+  block:
+    - name: Ensure that the required Flatpak packages are instaled
+      become: true
+      community.general.flatpak:
+        name: "{{ backup_flatpak_packages }}"
+        state: present
+
+    - name: Check SyncThingy background permission
+      ansible.builtin.command: flatpak permission-show -v com.github.zocker_160.SyncThingy
+      register: backup_background_permission
+      changed_when: false
+
+    - name: Add SyncThingy background permission
+      when: not backup_background_permission.stdout | regex_findall('background\t.*\t(yes)\t.*', '\\1')
+      ansible.builtin.command: flatpak permission-set background background com.github.zocker_160.SyncThingy yes
+      register: backup_background_permission
+      changed_when: backup_background_permission.rc == 0
+
+    - name: Enable SyncThingy autostart
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/autostart/com.github.zocker_160.SyncThingy.desktop"
+        src: /var/lib/flatpak/exports/share/applications/com.github.zocker_160.SyncThingy.desktop
+        state: link
+
+# https://github.com/zocker-160/SyncThingy/issues/6
+- name: Apply workaround to fix 'background permission revoked' error in SyncThingy
+  tags:
+    - backup
+  when: backup_workaround
+  block:
+    - name: Ensure that the RPM packages required for the workaround are installed
+      community.general.rpm_ostree_pkg:
+        name: xdg-desktop-portal-gnome
+        state: present
+      notify: "apply rpm-ostree packages"
+
+    - name: Copy the original portal settings file for the workaround
+      ansible.builtin.copy:
+        remote_src: true
+        src: /usr/share/xdg-desktop-portal/sway-portals.conf
+        dest: "{{ backup_portal_config }}"
+        mode: "0644"
+
+    - name: Add a parameter to the portal settings file for the workaround
+      ansible.builtin.lineinfile:
+        path: "{{ backup_portal_config }}"
+        line: "org.freedesktop.impl.portal.Background=gnome"
+        state: present

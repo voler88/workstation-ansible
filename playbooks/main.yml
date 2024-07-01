@@ -12,3 +12,11 @@
     - name: Deploy Terminal emulator
       ansible.builtin.import_role:
         name: voler88.workstation.term
+
+    - name: Deploy Backup tools
+      ansible.builtin.import_role:
+        name: voler88.workstation.backup
+
+    # - name: Deploy IDE
+    #   ansible.builtin.import_role:
+    #     name: voler88.workstation.ide
