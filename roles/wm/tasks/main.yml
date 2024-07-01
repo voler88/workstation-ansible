@@ -14,6 +14,12 @@
     - ["{{ wm_sway_dir }}", "{{ wm_swaylock_dir }}", "{{ wm_waybar_dir }}"]
     - [absent, directory]
 
+- name: Ensure that the Fontawesome package is installed
+  community.general.rpm_ostree_pkg:
+    name: fontawesome-fonts-all
+    state: present
+  notify: "apply rpm-ostree packages"
+
 - name: Deploy configs
   tags:
     - wm

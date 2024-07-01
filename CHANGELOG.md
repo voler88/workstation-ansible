@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Backup tools deploy.
+- IDE deploy.
+
+### Changed
+
+- Added installation of FontAwesome in WM deploy.
+
 ## [0.1.0] - 2024-07-01
 
 ### Added
