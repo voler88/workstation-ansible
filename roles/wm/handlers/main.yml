@@ -1,0 +1,8 @@
+---
+# handlers file for wm
+
+- name: Reload Sway config
+  ansible.builtin.command: swaymsg reload
+  register: sway_reload
+  changed_when: sway_reload.rc == 0
+  listen: "reload sway config"

@@ -1,0 +1,14 @@
+---
+# playbook for deploy roles
+
+- name: Collection
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Deploy Window manager
+      ansible.builtin.import_role:
+        name: voler88.workstation.wm
+
+    - name: Deploy Terminal emulator
+      ansible.builtin.import_role:
+        name: voler88.workstation.term

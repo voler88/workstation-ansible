@@ -1,0 +1,28 @@
+---
+# tasks file for term
+
+- name: Deploy base16-foot color themes
+  tags:
+    - term
+  ansible.builtin.git:
+    dest: "{{ term_base16_dir }}"
+    repo: "{{ term_base16_repo }}"
+    recursive: false
+    version: "{{ term_base16_branch }}"
+
+- name: Deploy foot config
+  tags:
+    - term
+    - term:configs
+  ansible.builtin.template:
+    src: foot.ini.j2
+    dest: "{{ term_foot_config }}"
+    mode: "0644"
+
+- name: Fix running via xdg-launch
+  tags:
+    - term
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin/xdg-terminal-exec"
+    src: /usr/bin/foot
+    state: link
