@@ -1,0 +1,12 @@
+---
+# defaults file for ide
+
+ide_bashrc_config: "{{ ansible_env.HOME }}/.bashrc.d/ide"
+ide_nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
+
+ide_packages:
+  - bat
+  - neovim
+  - fd-find
+  - ripgrep
+  - lazygit

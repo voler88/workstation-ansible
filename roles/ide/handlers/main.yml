@@ -1,0 +1,9 @@
+---
+# handlers file for ide
+
+- name: Apply ostree pending deployment changes to booted deployment
+  become: true
+  ansible.builtin.command: rpm-ostree apply-live --allow-replacement
+  register: rpm_ostree_live
+  changed_when: rpm_ostree_live.rc == 0
+  listen: "apply rpm-ostree packages"

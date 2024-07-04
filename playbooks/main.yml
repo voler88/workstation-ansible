@@ -17,6 +17,6 @@
       ansible.builtin.import_role:
         name: voler88.workstation.backup
 
-    # - name: Deploy IDE
-    #   ansible.builtin.import_role:
-    #     name: voler88.workstation.ide
+    - name: Deploy IDE
+      ansible.builtin.import_role:
+        name: voler88.workstation.ide

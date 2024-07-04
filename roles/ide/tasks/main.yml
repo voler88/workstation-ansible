@@ -1,0 +1,68 @@
+---
+# tasks file for ide
+
+- name: Cleanup Neovim configs
+  tags:
+    - never
+    - ide:cleanup
+    - ide:configs:cleanup
+  ansible.builtin.file:
+    path: "{{ item[0] }}"
+    mode: "0755"
+    state: "{{ item[1] }}"
+  with_nested:
+    - ["{{ ide_nvim_dir }}"]
+    - [absent, directory]
+
+- name: Deploy packages
+  tags:
+    - ide
+    - ide:cleanup
+  block:
+    - name: Ensure that the Lazygit repo is installed
+      become: true
+      ansible.builtin.yum_repository:
+        name: copr:copr.fedorainfracloud.org:atim:lazygit
+        description: Copr repo for lazygit owned by atim
+        baseurl: "https://download.copr.fedorainfracloud.org/results/atim/lazygit/fedora-{{ ansible_distribution_major_version }}-x86_64/"
+        gpgkey: https://download.copr.fedorainfracloud.org/results/atim/lazygit/pubkey.gpg
+        gpgcheck: true
+        repo_gpgcheck: false
+        enabled: true
+        skip_if_unavailable: true
+        state: present
+
+    - name: Ensure thet the required RPM packages are installed
+      community.general.rpm_ostree_pkg:
+        name: "{{ ide_packages }}"
+        state: present
+      notify: "apply rpm-ostree packages"
+
+- name: Deploy configs
+  tags:
+    - ide
+    - ide:cleanup
+    - ide:configs
+    - ide:configs:cleanup
+  block:
+    - name: Ensure that the bashrc settings are deployed
+      ansible.builtin.copy:
+        src: bashrc
+        dest: "{{ ide_bashrc_config }}"
+        mode: "0644"
+
+    - name: Ensure that the Nvim directory structure is exist
+      ansible.builtin.file:
+        path: "{{ ide_nvim_dir }}/{{ item.path }}"
+        state: directory
+        mode: "0755"
+      with_community.general.filetree: ../templates/nvim/
+      when: item.state == "directory"
+
+    - name: Ensure that the Nvim templates are deployed
+      ansible.builtin.template:
+        src: "{{ item.src }}"
+        dest: "{{ ide_nvim_dir }}/{{ item.path | splitext | first }}"
+        mode: "0644"
+      with_community.general.filetree: ../templates/nvim/
+      when: item.state == "file"

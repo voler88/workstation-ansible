@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-07-04
+
 ### Added
 
 - Backup tools deploy.
@@ -14,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Added installation of FontAwesome in WM deploy.
+- Added installation of Nerd Fonts in WM deploy.
 
 ## [0.1.0] - 2024-07-01
 

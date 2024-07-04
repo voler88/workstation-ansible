@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export EDITOR=/usr/bin/nvim
+alias cat="bat -p"
+alias nv="nvim"
+alias vim="nvim"
