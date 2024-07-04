@@ -5,6 +5,7 @@ wm_username: "{{ ansible_env.USER }}"
 wm_autologin: true
 wm_dark_theme: true
 
+wm_fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts"
 wm_gtk3_config: "{{ ansible_env.HOME }}/.config/gtk-3.0/settings.ini"
 wm_sway_dir: "{{ ansible_env.HOME }}/.config/sway"
 wm_swaylock_dir: "{{ ansible_env.HOME }}/.config/swaylock"

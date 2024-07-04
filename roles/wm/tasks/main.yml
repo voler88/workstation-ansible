@@ -14,12 +14,6 @@
     - ["{{ wm_sway_dir }}", "{{ wm_swaylock_dir }}", "{{ wm_waybar_dir }}"]
     - [absent, directory]
 
-- name: Ensure that the Fontawesome package is installed
-  community.general.rpm_ostree_pkg:
-    name: fontawesome-fonts-all
-    state: present
-  notify: "apply rpm-ostree packages"
-
 - name: Deploy configs
   tags:
     - wm
@@ -101,6 +95,28 @@
       with_community.general.filetree: waybar/
       when: item.state == "file"
       notify: "reload sway config"
+
+- name: Deploy Nerd Fonts
+  tags:
+    - wm
+    - wm:cleanup
+    - wm:fonts
+  block:
+    - name: Ensure that fonts directory structure exist
+      ansible.builtin.file:
+        path: "{{ wm_fonts_dir }}"
+        mode: "0700"
+        state: directory
+
+    - name: Ensure that fonts exist
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/SourceCodePro.tar.xz
+        dest: "{{ wm_fonts_dir }}"
+        remote_src: true
+        mode: "0700"
+        exclude:
+          - LICENSE.txt
+          - README.md
 
 - name: Deploy GTK+ settings
   tags:
