@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.1] - 2024-08-06
+
+### Added
+
+- Enable IDE extra plugins for Markdown and Shell files.
+- Enable IDE extra plugin for testing.
+- Enable IDE golines formatter for Go.
+
+### Fixed
+
+- Fix IDE plugins loading order.
+
 ## [0.2.0] - 2024-07-04
 
 ### Added

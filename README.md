@@ -54,16 +54,16 @@ All the following theses are personal opinions.
 
 #### Terminal emulator
 
-| Variable           | Description                                                         | Defaults                                      |
-| ------------------ | ------------------------------------------------------------------- | --------------------------------------------- |
-| term_foot_config   | Path to Foot settings file.                                         | `HOME`/.config/foot/foot.ini                  |
-| term_term          | Value to set the environment variable TERM to.                      | xterm-256color                                |
-| term_font_name     | Font name for text in terminal.                                     | SourceCodePro                                 |
-| term_font_size     | Text size in terminal.                                              | 13                                            |
-| term_base16_dir    | Path to directory with Base16 Tinted Theming for Foot.              | `HOME`/.config/foot/base16                    |
-| term_base16_repo   | Base16 Tinted Theming for Foot git repository URL address.          | https://github.com/tinted-theming/base16-foot |
-| term_base16_branch | Git branch name from Base16 Tinted Theming for Foot git repository. | main                                          |
-| term_base16_theme  | Theme name from Base16 Tinted Theming for Foot.                     | gruvbox-dark-medium                           |
+| Variable           | Description                                                         | Defaults                                        |
+| ------------------ | ------------------------------------------------------------------- | ----------------------------------------------- |
+| term_foot_config   | Path to Foot settings file.                                         | `HOME`/.config/foot/foot.ini                    |
+| term_term          | Value to set the environment variable TERM to.                      | xterm-256color                                  |
+| term_font_name     | Font name for text in terminal.                                     | SourceCodePro                                   |
+| term_font_size     | Text size in terminal.                                              | 13                                              |
+| term_base16_dir    | Path to directory with Base16 Tinted Theming for Foot.              | `HOME`/.config/foot/base16                      |
+| term_base16_repo   | Base16 Tinted Theming for Foot git repository URL address.          | <https://github.com/tinted-theming/base16-foot> |
+| term_base16_branch | Git branch name from Base16 Tinted Theming for Foot git repository. | main                                            |
+| term_base16_theme  | Theme name from Base16 Tinted Theming for Foot.                     | gruvbox-dark-medium                             |
 
 #### Backup tools
 
@@ -80,6 +80,7 @@ All the following theses are personal opinions.
 | ide_bashrc_config | Path to bashrc script.                | `HOME`/.bashrc.d/ide                   |
 | ide_nvim_dir      | Path to directory with Nvim settings. | `HOME`/.config/nvim                    |
 | ide_packages      | List of required RPM packages.        | bat, neovim, fd-find, ripgrep, lazygit |
+| ide_lang          | List of enabled language plugins.     | ansible, go, markdown, shell           |
 
 ### Tags
 

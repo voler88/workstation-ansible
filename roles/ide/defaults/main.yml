@@ -10,3 +10,9 @@ ide_packages:
   - fd-find
   - ripgrep
   - lazygit
+
+ide_lang:
+  - ansible
+  - go
+  - markdown
+  - shell

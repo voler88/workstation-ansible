@@ -1,0 +1,19 @@
+-- Setup formatters
+return {
+{% if "go" in ide_lang %}
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			table.insert(opts.ensure_installed, "golines")
+		end,
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				go = { "goimports", "gofumpt", "golines" },
+			},
+		},
+	},
+{% endif %}
+}
