@@ -1,12 +1,35 @@
 ---
 # defaults file for term
 
+# Path to Foot settings file.
+# Default: $HOME/.config/foot/foot.ini.
 term_foot_config: "{{ ansible_env.HOME }}/.config/foot/foot.ini"
-term_term: xterm-256color # fix on some servers WARNING: terminal is not fully functional
+
+# Value to set the environment variable TERM to.
+# Fix on some servers 'WARNING: terminal is not fully functional'.
+# Default: xterm-256color
+term_term: xterm-256color
+
+# Font name for text in terminal.
+# Default: SourceCodePro.
 term_font_name: SauceCodeProNerdFont
+
+# Text size in terminal.
+# Default: 13.
 term_font_size: 13
 
+# Path to directory with Base16 Tinted Theming for Foot.
+# Default: $HOME/.config/foot/base16.
 term_base16_dir: "{{ ansible_env.HOME }}/.config/foot/base16"
+
+# Base16 Tinted Theming for Foot git repository URL address.
+# Default: https://github.com/tinted-theming/base16-foot.
 term_base16_repo: https://github.com/tinted-theming/base16-foot
+
+# Git branch name from Base16 Tinted Theming for Foot git repository.
+# Default: main.
 term_base16_branch: main
+
+# Theme name from Base16 Tinted Theming for Foot.
+# Default: gruvbox-dark-medium.
 term_base16_theme: gruvbox-dark-medium

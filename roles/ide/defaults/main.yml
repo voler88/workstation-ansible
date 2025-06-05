@@ -8,12 +8,12 @@ ide_nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 
 # List of required RPM packages.
 ide_packages:
-  - bat
-  - cargo
   - neovim
-  - fd-find
-  - ripgrep
-  - lazygit
+  - bat # Replace cat/less in telescope.nvim.
+  - fd-find # Speedup find in telescope.nvim.
+  - ripgrep # Speedup grep in telescope.nvim.
+  - lazygit # Git UI and integration with Neovim.
+  - cargo # Build ruff for python in mason.nvim.
 
 # List of enabled language plugins.
 ide_lang:

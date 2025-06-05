@@ -1,8 +1,16 @@
 ---
 # defaults file for backup
 
-backup_workaround: true # fix for https://github.com/zocker-160/SyncThingy/issues/6
+# Enable SyncThingy background permission workaround.
+# Fix for https://github.com/zocker-160/SyncThingy/issues/6.
+# Default: true.
+backup_workaround: true
+
+# Path to XDG portal settings for background permission workaround.
+# Default: $HOME/.config/xdg-desktop-portal/sway-portals.conf.
 backup_portal_config: "{{ ansible_env.HOME }}/.config/xdg-desktop-portal/sway-portals.conf"
 
+# List of required Flatpack packages.
+# Default: com.github.zocker_160.SyncThingy.
 backup_flatpak_packages:
   - com.github.zocker_160.SyncThingy
