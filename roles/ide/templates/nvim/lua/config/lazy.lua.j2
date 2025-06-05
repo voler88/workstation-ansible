@@ -20,18 +20,37 @@ require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+{% set ns = namespace(use_test_tools=false) %}
 {% for lang in ide_lang %}
 {% if lang == "ansible" %}
 		{ import = "lazyvim.plugins.extras.lang.ansible" },
+{% elif lang == "cmake" %}
+		{ import = "lazyvim.plugins.extras.lang.cmake" },
+{% elif lang == "docker" %}
+		{ import = "lazyvim.plugins.extras.lang.docker" },
 {% elif lang == "go" %}
+{% set ns.use_test_tools = true %}
 		{ import = "lazyvim.plugins.extras.lang.go" },
-		{ import = "lazyvim.plugins.extras.test.core" },
+{% elif lang == "json" %}
+		{ import = "lazyvim.plugins.extras.lang.json" },
 {% elif lang == "markdown" %}
 		{ import = "lazyvim.plugins.extras.lang.markdown" },
+{% elif lang == "python" %}
+{% set ns.use_test_tools = true %}
+		{ import = "lazyvim.plugins.extras.lang.python" },
 {% elif lang == "shell" %}
 		{ import = "lazyvim.plugins.extras.util.dot" },
+{% elif lang == "typescript" %}
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
+{% elif lang == "toml" %}
+		{ import = "lazyvim.plugins.extras.lang.toml" },
+{% elif lang == "yaml" %}
+		{ import = "lazyvim.plugins.extras.lang.yaml" },
 {% endif %}
 {% endfor %}
+{% if ns.use_test_tools %}
+		{ import = "lazyvim.plugins.extras.test.core" },
+{% endif %}
 		-- import new/override LazyVim plugins
 		{ import = "plugins" },
 	},

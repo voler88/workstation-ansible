@@ -1,18 +1,29 @@
 ---
 # defaults file for ide
 
+# Path to bashrc script.
 ide_bashrc_config: "{{ ansible_env.HOME }}/.bashrc.d/ide"
+# Path to directory with Nvim settings.
 ide_nvim_dir: "{{ ansible_env.HOME }}/.config/nvim"
 
+# List of required RPM packages.
 ide_packages:
   - bat
+  - cargo
   - neovim
   - fd-find
   - ripgrep
   - lazygit
 
+# List of enabled language plugins.
 ide_lang:
   - ansible
+  - docker
   - go
+  - json
   - markdown
+  - python
   - shell
+  - typescript
+  - toml
+  - yaml
