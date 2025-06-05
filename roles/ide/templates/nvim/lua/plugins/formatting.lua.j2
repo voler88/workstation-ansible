@@ -1,6 +1,7 @@
+#jinja2: trim_blocks: False
 -- Setup formatters
 return {
-{% if "go" in ide_lang %}
+	-- ansible j2 block {% if "go" in ide_lang %}
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
@@ -13,16 +14,16 @@ return {
 			formatters_by_ft = {
 				go = { "goimports", "gofumpt", "golines" },
 			},
-      formatters = {
-        golines = {
-          command = "golines",
-          args = {
-            "--no-reformat-tags",
-          },
-          stdin = true,
-        },
-      },
+			formatters = {
+				golines = {
+					command = "golines",
+					args = {
+						"--no-reformat-tags",
+					},
+					stdin = true,
+				},
+			},
 		},
 	},
-{% endif %}
+	-- ansible j2 block {% endif %}
 }
