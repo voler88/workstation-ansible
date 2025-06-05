@@ -13,6 +13,15 @@ return {
 			formatters_by_ft = {
 				go = { "goimports", "gofumpt", "golines" },
 			},
+      formatters = {
+        golines = {
+          command = "golines",
+          args = {
+            "--no-reformat-tags",
+          },
+          stdin = true,
+        },
+      },
 		},
 	},
 {% endif %}
