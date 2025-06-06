@@ -17,6 +17,10 @@ wm_dark_theme: true
 # Default: $HOME/.local/share/fonts.
 wm_fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts"
 
+# Path to fontconfig directory for fallback.
+# Default: $HOME/.config/fontconfig.
+wm_fontconfig_dir: "{{ ansible_env.HOME }}/.config/fontconfig"
+
 # Path to GTK+ 3 settings file.
 # Default: $HOME/.config/gtk-3.0/settings.ini.
 wm_gtk3_config: "{{ ansible_env.HOME }}/.config/gtk-3.0/settings.ini"

@@ -11,12 +11,12 @@ term_foot_config: "{{ ansible_env.HOME }}/.config/foot/foot.ini"
 term_term: xterm-256color
 
 # Font name for text in terminal.
-# Default: SourceCodePro.
-term_font_name: SauceCodeProNerdFont
+# Default: SauceCodePro Nerd Font.
+term_font_name: SauceCodePro Nerd Font
 
 # Text size in terminal.
-# Default: 13.
-term_font_size: 13
+# Default: 14.
+term_font_size: 14
 
 # Path to directory with Base16 Tinted Theming for Foot.
 # Default: $HOME/.config/foot/base16.

@@ -1,18 +1,19 @@
 ---
 # tasks file for wm
 
-- name: Cleanup Sway, Swaylock, Waybar configs
+- name: Cleanup Sway, Swaylock, Waybar, Font configs
   tags:
     - never
     - wm:cleanup
     - wm:configs:cleanup
   ansible.builtin.file:
-    path: "{{ item[0] }}"
-    mode: "0755"
-    state: "{{ item[1] }}"
-  with_nested:
-    - ["{{ wm_sway_dir }}", "{{ wm_swaylock_dir }}", "{{ wm_waybar_dir }}"]
-    - [absent, directory]
+    path: "{{ item }}"
+    state: "absent"
+  loop:
+    - "{{ wm_sway_dir }}"
+    - "{{ wm_swaylock_dir }}"
+    - "{{ wm_waybar_dir }}"
+    - "{{ wm_fontconfig_dir }}"
 
 - name: Deploy configs
   tags:
@@ -21,6 +22,17 @@
     - wm:configs
     - wm:configs:cleanup
   block:
+    - name: Ensure main directories structure exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        mode: "0755"
+        state: "directory"
+      loop:
+        - "{{ wm_sway_dir }}"
+        - "{{ wm_swaylock_dir }}"
+        - "{{ wm_waybar_dir }}"
+        - "{{ wm_fontconfig_dir }}"
+
     - name: Deploy SDDM config for autologin
       become: true
       when: wm_autologin
@@ -95,6 +107,22 @@
       with_community.general.filetree: waybar/
       when: item.state == "file"
       notify: "reload sway config"
+
+    - name: Ensure Font config directory structure exist
+      ansible.builtin.file:
+        path: "{{ wm_fontconfig_dir }}/{{ item.path }}"
+        mode: "0755"
+        state: directory
+      with_community.general.filetree: fontconfig/
+      when: item.state == "directory"
+
+    - name: Deploy Font config files
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ wm_fontconfig_dir }}/{{ item.path }}"
+        mode: "0644"
+      with_community.general.filetree: fontconfig/
+      when: item.state == "file"
 
 - name: Deploy Nerd Fonts
   tags:
