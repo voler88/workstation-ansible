@@ -105,7 +105,8 @@
     "format": " {percentage}%"
   },
   "disk": {
-    "format": " {percentage_used}%"
+    "format": " {percentage_used}%",
+    "path": "/var"
   },
   "temperature": {
     "critical-threshold": 80,
